@@ -22,7 +22,7 @@ bool S_Intro::Init()
 	addChild(_mesh, 0);
 
 	CDrawMgr->m_pCurCamera->setActive(true);
-	CDrawMgr->m_pCurCamera->setEye(D3DXVECTOR3(0, 0, -25));
+	CDrawMgr->m_pCurCamera->setPos(D3DXVECTOR3(0, 0, -25));
 	CDrawMgr->m_pCurCamera->setLookat(D3DXVECTOR3(0,0,0));
 
 	return true;

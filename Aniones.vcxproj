@@ -20,7 +20,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -41,6 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\WOOCHEOL\Desktop\Aniones\FMOD\api\inc;C:\Users\WOOCHEOL\Desktop\Aniones\DX\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\WOOCHEOL\Desktop\Aniones\FMOD\api\lib;C:\Users\WOOCHEOL\Desktop\Aniones\DX\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -56,6 +58,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -76,6 +79,46 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BaseChar.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="Define.h" />
+    <ClInclude Include="Director.h" />
+    <ClInclude Include="DrawManager.h" />
+    <ClInclude Include="Header.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="S_Game.h" />
+    <ClInclude Include="S_Intro.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="ThirdPersonCamera.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BaseChar.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Director.cpp" />
+    <ClCompile Include="DrawManager.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="S_Game.cpp" />
+    <ClCompile Include="S_Intro.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="ThirdPersonCamera.cpp" />
+    <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

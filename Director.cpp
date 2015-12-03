@@ -1,5 +1,6 @@
 #include "Director.h"
 #include "S_Intro.h"
+#include "S_Game.h"
 
 
 CDirector::CDirector()
@@ -31,7 +32,7 @@ bool CDirector::Init()
 	_sceneMgr = new CSceneManager();
 	_soundMgr = new CSoundManager();
 	
-	_sceneMgr->setCurScene(new S_Intro);
+	_sceneMgr->setCurScene(new S_Game());
 	_sceneMgr->getCurScene()->Init();
 
 	return true;
@@ -101,10 +102,6 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_RBUTTONUP:
 		CSceneMgr->getCurScene()->RButtonUp(hWnd, msg, wParam, lParam);
-		break;
-	case WM_MOUSEMOVE:
-		CDIRECTOR->setMouseX(LOWORD(lParam));
-		CDIRECTOR->setMouseY(HIWORD(lParam));
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
