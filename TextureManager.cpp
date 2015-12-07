@@ -29,8 +29,12 @@ CTexture* CTextureManager::createTexture(const char* a_sFileName)
 		1, 0, D3DFMT_UNKNOWN, D3DPOOL_MANAGED, D3DX_FILTER_NONE, D3DX_FILTER_NONE, NULL,
 		&tempInfo, NULL, &tempTexture);
 
+
+	RECT rt = { 0, 0, tempInfo.Width, tempInfo.Height };
+	
 	temp->setFileName(a_sFileName);
 	temp->setTexture(tempTexture);
+	temp->setRect(rt);
 	temp->setImgInfo(tempInfo);
 
 	

@@ -33,7 +33,7 @@ bool CMesh::Init(const char* a_sFileName)
 	D3DXLoadMeshFromX(a_sFileName, D3DXMESH_SYSTEMMEM,
 		CDrawMgr->getDevice(), NULL,
 		&_mtrlBuffer, NULL, &_numMaterials,
-		CDrawMgr->getMesh());
+		&_mesh);
 
 	// We need to extract the material properties and texture names from the 
 	// pD3DXMtrlBuffer
@@ -83,8 +83,8 @@ void CMesh::Render()
 		CDrawMgr->getDevice()->SetMaterial(&_materials[i]);
 		CDrawMgr->getDevice()->SetTexture(0, _textures[i]->getTexture());
 
-		// Draw the mesh subset
-		(*CDrawMgr->getMesh())->DrawSubset(i);
+		// Draw the mesh subsetS
+		_mesh->DrawSubset(i);
 		
 	}
 }

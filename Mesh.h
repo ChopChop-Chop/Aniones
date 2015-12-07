@@ -33,6 +33,7 @@ public:
 	void setDegreeX(float a_DegreeX) { _degreeX = a_DegreeX; }
 	void setDegreeY(float a_DegreeY) { _degreeY = a_DegreeY; }
 	void setDegreeZ(float a_DegreeZ) { _degreeZ = a_DegreeZ; }
+	void setMesh(LPD3DXMESH a_Mesh) { _mesh = a_Mesh; }
 
 	D3DXVECTOR3 getPos(); // 위치
 	float getPosX() { return _pos.x; }
@@ -51,10 +52,11 @@ public:
 	float getDegreeX() { return _degreeX; }
 	float getDegreeY() { return _degreeY; }
 	float getDegreeZ() { return _degreeZ; }
+	LPD3DXMESH getMesh() { return _mesh; }
 
 	CMesh();
 	virtual ~CMesh();
-private:
+protected:
 	D3DMATERIAL9* _materials; // 메쉬의 재질
 	CTexture** _textures; // 매쉬의 텍스쳐
 	DWORD _numMaterials; // 메쉬의 재질 개수
@@ -67,6 +69,7 @@ private:
 	D3DXQUATERNION _qut;
 	LPD3DXBUFFER _mtrlBuffer;
 	D3DXMATERIAL* _d3dxMaterials;
+	LPD3DXMESH		_mesh;
 
 	float _degreeX;
 	float _degreeY;

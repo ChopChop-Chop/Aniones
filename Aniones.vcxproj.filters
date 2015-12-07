@@ -51,9 +51,6 @@
     <ClInclude Include="resource.h">
       <Filter>소스 파일\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="S_Intro.h">
-      <Filter>소스 파일\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>소스 파일\Engine</Filter>
     </ClInclude>
@@ -78,7 +75,19 @@
     <ClInclude Include="BaseChar.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ThirdPersonCamera.h">
+    <ClInclude Include="Bullet.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundingBox.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Intro.h">
+      <Filter>소스 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="S_PressAnyKey.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -102,9 +111,6 @@
       <Filter>소스 파일\Engine</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
-      <Filter>소스 파일\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="S_Intro.cpp">
       <Filter>소스 파일\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
@@ -134,7 +140,19 @@
     <ClCompile Include="BaseChar.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ThirdPersonCamera.cpp">
+    <ClCompile Include="Bullet.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="BoundingBox.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="S_Intro.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="S_PressAnyKey.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

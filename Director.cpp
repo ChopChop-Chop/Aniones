@@ -31,9 +31,12 @@ bool CDirector::Init()
 	_textureMgr = new CTextureManager();
 	_sceneMgr = new CSceneManager();
 	_soundMgr = new CSoundManager();
-	
+	_bulletMgr = new CBulletManager();
+
 	_sceneMgr->setCurScene(new S_Game());
 	_sceneMgr->getCurScene()->Init();
+
+	_bulletMgr->Init();
 
 	return true;
 }
@@ -102,6 +105,9 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_RBUTTONUP:
 		CSceneMgr->getCurScene()->RButtonUp(hWnd, msg, wParam, lParam);
+		break;
+	case WM_MOUSEMOVE:
+		CDIRECTOR->setMousePos(LOWORD(lParam), HIWORD(lParam));
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);

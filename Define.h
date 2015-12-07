@@ -18,3 +18,4 @@
 #define CTexMgr CDirector::getInstance()->getTextureManager()
 #define CSceneMgr CDirector::getInstance()->getSceneManager()
 #define CSoundMgr CDirector::getInstance()->getSoundManager()
+#define CBulletMgr CDirector::getInstance()->getBulletManager()

@@ -1,11 +1,19 @@
 #pragma once
 #include "Node.h"
 #include "Texture.h"
+#include <vector>
 
 class CSprite : public CNode
 {
 private:
-	CTexture* _texture; // 텍스쳐
+	std::vector<CTexture*> _texVector;
+
+	int _nowAni;
+	int _beginAni;
+	int _endAni;
+	float _frameRate;
+	float _nowTime;
+	float _oldTime;
 
 	D3DXVECTOR2 _pos; // 위치
 	D3DXVECTOR2 _acp; // 앵커포인트
@@ -15,12 +23,20 @@ private:
 	
 	float _degree;
 public:
-	bool Init(const char* a_sFilename);
+	bool Init(const char* a_Filename);
 	void UpdateMatrix();
+	void AniUpdate();
+	bool AniUpdateOnce();
 	void Render() override;
 	void Release() override;
 
-	void setTexture(CTexture* a_Tex);
+	void addTexture(CTexture* a_Tex);
+	void addTexture(const char* a_Filename);
+	void setNowAni(int a_NowAni);
+	void setBeginAni(int a_BeginAni);
+	void setEndAni(int a_EndAni);
+	void setFrameRate(int a_FrameRate);
+	void setAniScope(int begin, int end, float framerate);
 	void setPos(float x, float y);
 	void setPosX(float x);
 	void setPosY(float y);
@@ -37,7 +53,11 @@ public:
 	void setDegree(float a_fDegree);
 	void setCol(D3DXCOLOR a_Col);
 	
-	CTexture* getTexture();
+	CTexture* getTexture(int index);
+	int getNowAni();
+	int getBeginAni();
+	int getEndAni();
+	float getFrameRate();
 	float getPosX();
 	float getPosY();
 	D3DXVECTOR2 getPos();

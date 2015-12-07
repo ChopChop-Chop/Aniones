@@ -5,7 +5,13 @@
 
 CSprite::CSprite()
 {
-	_texture = new CTexture(); // 텍스쳐
+
+	_nowAni = 0;
+	_beginAni = 0;
+	_endAni = 0;
+	_frameRate = 0;
+	_nowTime = 0;
+	_oldTime = 0;
 
 	_pos = D3DXVECTOR2(0,0); // 위치
 	_acp = D3DXVECTOR2(0.5,0.5); // 앵커포인트
@@ -19,40 +25,128 @@ CSprite::CSprite()
 
 CSprite::~CSprite()
 {
-	delete _texture;
+	for (int i = _texVector.size() - 1; i > 0; i--)
+	{
+		delete _texVector.at(i);
+	}
 }
+
+
 
 bool CSprite::Init(const char* a_sFilename)
 {
-	_texture->createTexture(a_sFilename);
+	CTexture* temp = new CTexture();
+	temp->createTexture(a_sFilename);
+	_texVector.push_back(temp);
 
 	return true;
 }
 void CSprite::UpdateMatrix()
 {
 	D3DXVECTOR2 Pt;
-	Pt.x = _pos.x - (_texture->getImgInfo().Width * _acp.x);
-	Pt.y = _pos.y - (_texture->getImgInfo().Height * _acp.y);
+	Pt.x = _pos.x - (_texVector.at(_nowAni)->getRect().right * _acp.x);
+	Pt.y = _pos.y - (_texVector.at(_nowAni)->getRect().bottom * _acp.y);
 
 	float radian = _degree * 3.141592f / 180.0f;
 
 	D3DXMatrixTransformation2D(&_mat, &_acp, NULL, &_scale, &_acp, radian, &Pt);
 }
+void CSprite::AniUpdate()
+{
+	if (_oldTime == 0)
+		_oldTime = timeGetTime();
+
+	_nowTime = timeGetTime();
+
+	if (_nowAni < _beginAni)
+	{
+		_nowAni = _beginAni;
+	}
+	if (_nowAni > _endAni)
+	{
+		_nowAni = _beginAni;
+	}
+
+	if (_nowTime - _oldTime >= _frameRate)
+	{
+		_oldTime = timeGetTime();
+
+		_nowAni++;
+
+		if (_nowAni > _endAni)
+			_nowAni = _beginAni;
+		
+	}
+}
+bool CSprite::AniUpdateOnce()
+{
+	if (_oldTime == 0)
+		_oldTime = timeGetTime();
+
+	_nowTime = timeGetTime();
+
+	if (_nowAni < _beginAni)
+	{
+		_nowAni = _beginAni;
+	}
+	if (_nowAni > _endAni)
+	{
+		_nowAni = _beginAni;
+	}
+
+	if (_nowTime - _oldTime >= _frameRate)
+	{
+		_nowAni++;
+
+		if (_nowAni > _endAni)
+			return true;
+
+	}
+
+	return false;
+}
 void CSprite::Render()
 {
 	CDrawMgr->getSprite()->SetTransform(&_mat);
-	CDrawMgr->Draw2D(_texture->getTexture(), _texture->getRect(), D3DXVECTOR3(_acp.x, _acp.y, 0), D3DXVECTOR3(_pos.x, _pos.y, 0), _col);
+	CDrawMgr->Draw2D(_texVector.at(_nowAni)->getTexture(), _texVector.at(_nowAni)->getRect(), D3DXVECTOR3(_acp.x, _acp.y, _zorder), D3DXVECTOR3(_pos.x, _pos.y, _zorder), _col);
 }
 void CSprite::Release()
 {
 	
 }
 
-
-void CSprite::setTexture(CTexture* a_Tex)
+void CSprite::addTexture(CTexture* a_Tex)
 {
-	_texture = a_Tex;
-	UpdateMatrix();
+	_texVector.push_back(a_Tex);
+}
+void CSprite::addTexture(const char* a_FileName)
+{
+	CTexture* temp = new CTexture();
+	temp->createTexture(a_FileName);
+
+	_texVector.push_back(temp);
+}
+void CSprite::setNowAni(int a_NowAni)
+{
+	_nowAni = a_NowAni;
+}
+void CSprite::setBeginAni(int a_BeginAni)
+{
+	_beginAni = a_BeginAni;
+}
+void CSprite::setEndAni(int a_EndAni)
+{
+	_endAni = a_EndAni;
+}
+void CSprite::setFrameRate(int a_FrameRate)
+{
+	_frameRate = a_FrameRate;
+}
+void CSprite::setAniScope(int begin, int end, float framerate)
+{
+	_beginAni = begin;
+	_endAni = end;
+	_frameRate = framerate;
 }
 void CSprite::setPos(float x, float y)
 {
@@ -132,9 +226,25 @@ void CSprite::setCol(D3DXCOLOR a_Col)
 	_col = a_Col;
 	UpdateMatrix();
 }
-CTexture* CSprite::getTexture()
+CTexture* CSprite::getTexture(int index)
 {
-	return _texture;
+	return _texVector.at(index);
+}
+int CSprite::getNowAni()
+{
+	return _nowAni;
+}
+int CSprite::getBeginAni()
+{
+	return _beginAni;
+}
+int CSprite::getEndAni()
+{
+	return _endAni;
+}
+float CSprite::getFrameRate()
+{
+	return _frameRate;
 }
 float CSprite::getPosX()
 {

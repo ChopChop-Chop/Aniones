@@ -4,6 +4,8 @@
 
 CNode::CNode()
 {
+	_visible = true;
+	_zorder = 0;
 	_childs.clear();
 }
 
@@ -18,9 +20,12 @@ bool CNode::Init()
 }
 void CNode::Render()
 {
+	if (!_visible)
+		return;
 	for (auto p : _childs)
 	{
-		p->Render();
+		if (p->isVisible())
+			p->Render();
 	}
 }
 void CNode::Release()
@@ -53,7 +58,7 @@ void CNode::addChild(CNode* a_Ref, int a_Zorder)
 		}
 	}
 
-	_zorder = a_Zorder;
+	a_Ref->setZorder(a_Zorder);
 
 	_childs.push_back(a_Ref);
 

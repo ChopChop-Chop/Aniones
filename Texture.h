@@ -49,7 +49,7 @@ __inline void CTexture::setTexture(LPDIRECT3DTEXTURE9 a_pTexture)
 }
 __inline void CTexture::setFileName(const char* a_sFileName)
 {
-	_fileName = new char(sizeof(a_sFileName));
+	_fileName = new char[MAX_PATH];
 
 	strcpy(_fileName, a_sFileName);
 }

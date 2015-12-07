@@ -7,6 +7,7 @@
 #include "TextureManager.h"
 #include "SceneManager.h"
 #include "SoundManager.h"
+#include "BulletManager.h"
 
 class CDirector
 {
@@ -23,6 +24,7 @@ public:
 	CTextureManager* getTextureManager() { return _textureMgr; }
 	CSceneManager* getSceneManager() { return _sceneMgr; }
 	CSoundManager* getSoundManager() { return _soundMgr; }
+	CBulletManager* getBulletManager() { return _bulletMgr; }
 
 	double getMouseX() { return _mouseX; }
 	double getMouseY() { return _mouseY; }
@@ -43,13 +45,13 @@ public:
 
 	~CDirector();
 private:
-
 	CCollisionManager* _collisionMgr;
 	CDrawManager* _drawMgr;
 	CObjectManager* _objectMgr;
 	CTextureManager* _textureMgr;
 	CSceneManager* _sceneMgr;
 	CSoundManager* _soundMgr;
+	CBulletManager* _bulletMgr;
 
 	double _mouseX;
 	double _mouseY;

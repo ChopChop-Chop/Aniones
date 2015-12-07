@@ -58,7 +58,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d9.lib;d3dx9.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;fmodex_vc.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,6 +80,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BaseChar.h" />
+    <ClInclude Include="BoundingBox.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletManager.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Define.h" />
@@ -96,12 +99,15 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="S_Game.h" />
     <ClInclude Include="S_Intro.h" />
+    <ClInclude Include="S_PressAnyKey.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
-    <ClInclude Include="ThirdPersonCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseChar.cpp" />
+    <ClCompile Include="BoundingBox.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Director.cpp" />
@@ -115,9 +121,9 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="S_Game.cpp" />
     <ClCompile Include="S_Intro.cpp" />
+    <ClCompile Include="S_PressAnyKey.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
-    <ClCompile Include="ThirdPersonCamera.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

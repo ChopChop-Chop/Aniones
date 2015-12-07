@@ -2,7 +2,17 @@
 #include "Header.h"
 #include "Scene.h"
 #include "Sprite.h"
-#include "Mesh.h"
+#include "S_PressAnyKey.h"
+
+enum IntroState
+{
+	NONE= 0,
+	FADEIN,
+	APPEAR,
+	FADEOUT,
+	DISAPPEAR,
+	NEXTSCENE,
+};
 
 class S_Intro : public CScene
 {
@@ -16,7 +26,16 @@ public:
 	S_Intro();
 	~S_Intro();
 private:
-	CSprite* m_pBackGround;
-	CMesh* _mesh;
+	CSprite* _backGround;
+	CSprite* _teamLogo;
+
+	int _curState;
+	float _alpha;
+
+	float _now;
+	float _old;
+
+	S_PressAnyKey* _pressAnyKey;
+
 };
 

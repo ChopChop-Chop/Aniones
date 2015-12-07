@@ -18,38 +18,40 @@ public:
 	void Update();
 
 	CMesh* getModel() { return _model; }
+	float getAttackDelay() { return _attackDelay; }
 	float getSpeed() { return _speed; }
 	float getPower() { return _power; }
 	float getHP() { return _hp; }
-	float getHorizontal() { return _h; }
-	float getVertical() { return _v; }
+	int getHorizontal() { return _h; }
+	int getVertical() { return _v; }
 	CharInfo* getCharInfo() { return _info; }
-	bool IsJump() { return _isJump; }
+	D3DXVECTOR3 getLookDirection() { return _lookDirection; }
+	float getLookDirectionX() { return _lookDirection.x; }
+	float getLookDirectionZ() { return _lookDirection.z; }
+	D3DXVECTOR3 getMoveDirection() { return _moveDirection; }
+	float getMoveDirectionX() { return _moveDirection.x; }
+	float getMoveDirectionZ() { return _moveDirection.z; }
 	bool IsMove() { return _isMove; }
-	bool IsHorizontalMove() { return _isHorizontalMove; }
-	bool IsVerticalMove() { return _isVerticalMove; }
 	bool IsAttack() { return _isAttack; }
 	bool IsHurt() { return _isHurt; }
 
+	void setAttackDelay(float delay) { _attackDelay = delay; }
+	void setLookDirection(float x, float z) { _lookDirection.x = x; _lookDirection.z = z; }
+	void setLookDirection(D3DXVECTOR3 look) { _lookDirection = look; }
+	void setLookDirectionX(float x) { _lookDirection.x = x; }
+	void setLookDirectionZ(float z) { _lookDirection.z = z; }
+	void setMoveDirection(float x, float z) { _moveDirection.x = x; _moveDirection.z = z; }
+	void setMoveDirection(D3DXVECTOR3 dir) { _moveDirection = dir; }
 	void setModel(CMesh* a_model) { _model = a_model; }
 	void setSpeed(float a_speed) { _speed = a_speed; }
 	void setPower(float a_power) { _power = a_power; }
 	void setHP(float a_hp) { _hp = a_hp; }
-	void setHorizontal(float a_h) { _h = a_h; }			// 외부에서 조작
-	void setVertical(float a_v) { _v = a_v; }			// 외부에서 조작
-	void moveRight() {
-		if (_h < 1) _h += 0.1; _isMove = true; _isHorizontalMove = true;
-	}
-	void moveLeft() { if (_h > -1) _h -= 0.1; _isMove = true; _isHorizontalMove = true; }
-	void moveForword() { if (_v < 1) _v += 1; _isMove = true; _isVerticalMove = true; }
-	void moveBack() { if (_v > 1) _v -= 1; _isMove = true; _isVerticalMove = true; }
 	void setCharInfo(CharInfo* a_Info) { _info = a_Info; }
-	void setIsJump(bool a_isJump) { _isJump = a_isJump; }
 	void setIsMove(bool a_isMove) { _isMove = a_isMove; }
-	void setIsHorizontalMove(bool a_isHorizontalMove) { _isHorizontalMove = a_isHorizontalMove; }
-	void setIsVerticalMove(bool a_isVerticalMove) { _isVerticalMove = a_isVerticalMove; }
 	void setIsAttack(bool a_isAttack) { _isAttack = a_isAttack; }
 	void setIsHurt(bool a_isHurt) { _isHurt = a_isHurt; }
+	void setHorizontal(int h) { _h = h; }
+	void setVertical(int v) { _v = v; }
 	
 	CBaseChar();
 	virtual ~CBaseChar();
@@ -57,20 +59,22 @@ public:
 protected:
 	CMesh* _model;
 
+	float _attackDelay;	// 공격 간격 
 	float _speed;		// 이동속도
 	float _power;		// 공격력
 	float _hp;			// hp
 
-	float _h;
-	float _v;
+
+	int _h;		// 수평
+	int _v;		// 수직
 	
 	CharInfo* _info;
 
-	bool _isJump;
 	bool _isMove;
-	bool _isHorizontalMove;
-	bool _isVerticalMove;
 	bool _isAttack;
 	bool _isHurt;
+
+	D3DXVECTOR3 _moveDirection;
+	D3DXVECTOR3 _lookDirection;
 };
 

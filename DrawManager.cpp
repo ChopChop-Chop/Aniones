@@ -41,8 +41,8 @@ bool CDrawManager::InitWin()
 	};
 	RegisterClassEx(&wc);
 
-	int width = GetSystemMetrics(SM_CXFULLSCREEN);
-	int height = GetSystemMetrics(SM_CYFULLSCREEN);
+	int width = GetSystemMetrics(SM_CXSCREEN);
+	int height = GetSystemMetrics(SM_CYSCREEN);
 
 	_rtScreen.left = (width / 2) - (WINWIDTH / 2);
 	_rtScreen.right = (width / 2) + (WINWIDTH / 2);
@@ -51,7 +51,7 @@ bool CDrawManager::InitWin()
 
 	// Create the application's window
 	_hWND = CreateWindow("framework", "DirectXFramework",
-		WS_OVERLAPPEDWINDOW, /*m_rtScreen.left*/100, /*m_rtScreen.top*/100, _rtScreen.right, _rtScreen.bottom,
+		WS_OVERLAPPEDWINDOW, 0, 0, 1280, 720,
 		NULL, NULL, wc.hInstance, NULL);
 
 	return true;
@@ -115,7 +115,7 @@ void CDrawManager::Draw2D(LPDIRECT3DTEXTURE9 a_lpTexture, RECT a_rtSrc, D3DXVECT
 		PostQuitMessage(0);
 		return;
 	}
-	_sprite->Draw(a_lpTexture, NULL, &a_vCenter, &a_vPos, a_Color);
+	_sprite->Draw(a_lpTexture, &a_rtSrc, NULL, NULL, a_Color);
 	
 	_sprite->End();
 }

@@ -4,12 +4,13 @@
 INT WINAPI wWinMain(HINSTANCE hInst, HINSTANCE, LPWSTR, INT)
 {
 	UNREFERENCED_PARAMETER(hInst);
-#if DEBUG
+
 	AllocConsole();
 	freopen("CONIN$", "r", stdin);
 	freopen("CONOUT$", "w", stdout);
 	freopen("CONOUT$", "w", stderr);
-#endif
+
+
 	// °ÔÀÓ
 	if (!CDIRECTOR->Init())
 	{
