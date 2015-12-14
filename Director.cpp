@@ -1,6 +1,6 @@
 #include "Director.h"
 #include "S_Intro.h"
-#include "S_Game.h"
+#include "S_PressAnyKey.h"
 
 
 CDirector::CDirector()
@@ -33,8 +33,13 @@ bool CDirector::Init()
 	_soundMgr = new CSoundManager();
 	_bulletMgr = new CBulletManager();
 
-	_sceneMgr->setCurScene(new S_Game());
+	_sceneMgr->setCurScene(new S_PressAnyKey());
 	_sceneMgr->getCurScene()->Init();
+
+	if (!_soundMgr->Init())
+	{
+		std::cout << "SoundManagerInitFail" << std::endl;
+	}
 
 	_bulletMgr->Init();
 
@@ -42,6 +47,7 @@ bool CDirector::Init()
 }
 void CDirector::Update()
 {
+	_soundMgr->Update();
 	_sceneMgr->sceneUpdate();
 	_sceneMgr->getCurScene()->Update();
 }
@@ -67,6 +73,11 @@ void CDirector::Run()
 			Update();
 			Render();
 		}
+		else
+		{
+			WaitMessage();
+		}
+
 	}
 }
 void CDirector::Release()

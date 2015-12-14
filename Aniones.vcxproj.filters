@@ -88,7 +88,13 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="S_PressAnyKey.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="S_Menu.h">
+      <Filter>소스 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="S_CharSelect.h">
+      <Filter>소스 파일\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -152,8 +158,14 @@
     <ClCompile Include="BulletManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="S_Menu.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="S_CharSelect.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="S_PressAnyKey.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

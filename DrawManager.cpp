@@ -54,6 +54,8 @@ bool CDrawManager::InitWin()
 		WS_OVERLAPPEDWINDOW, 0, 0, 1280, 720,
 		NULL, NULL, wc.hInstance, NULL);
 
+	ShowCursor(false);
+
 	return true;
 }
 bool CDrawManager::InitD3D()

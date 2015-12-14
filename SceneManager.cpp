@@ -18,11 +18,6 @@ CSceneManager::~CSceneManager()
 		delete _curScene;
 		_curScene = nullptr;
 	}
-	if (_nextScene != NULL)
-	{
-		delete _nextScene;
-		_nextScene = nullptr;
-	}
 }
 
 

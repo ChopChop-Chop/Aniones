@@ -131,5 +131,9 @@ void CBaseChar::Update()
 		else if (_v == -1)
 			_model->setPos(_model->getPos() + (back * _speed));
 	}
+	if (_hp <= 0)
+	{
+		_visible = false;
+	}
 
 }

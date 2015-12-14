@@ -1,6 +1,7 @@
 #pragma once
 #include <d3dx9.h>
 #include "Mesh.h"
+#include "Sprite.h"
 
 
 class CCollisionManager
@@ -13,7 +14,7 @@ public:
 	bool AABB(CMesh _mesh1, CMesh _mesh2);
 	bool SphereToSphere(const D3DXVECTOR3* SphereCenter1, float SphereRadius1, const D3DXVECTOR3* SphereCenter2, float SphereRadius2);
 	bool SphereToLine(const D3DXVECTOR3* SphereCenter, float SphereRadius, const D3DXVECTOR3* LineBegin, const D3DXVECTOR3* LineDirection);
-
+	bool PointToSprite(D3DXVECTOR2 a_vPt, CSprite* a_sp);
 
 	CCollisionManager();
 	~CCollisionManager();

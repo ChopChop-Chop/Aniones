@@ -23,7 +23,7 @@ bool S_Game::Init()
 	addChild(_player , 0);
 
 	_enemy = new CBaseChar();
-	_enemy->Init(6);
+	_enemy->Init(1);
 	_enemy->getModel()->setPos(0, 0, 100);
 	addChild(_enemy);
 
@@ -62,6 +62,7 @@ void S_Game::Update()
 
 
 	_player->Update();
+	_enemy->Update();
 	CBulletMgr->Update();
 	BoundUpdate();
 }
@@ -72,7 +73,7 @@ void S_Game::BoundUpdate()
 		if (CBulletMgr->getBulletIndex1(i)->isVisible())
 		{
 			if (CColMgr->PointToPoint(&CBulletMgr->getBulletIndex1(i)->getMesh()->getPos(),
-				&_enemy->getModel()->getPos(), 5))		// enemy-> enemy 배열로
+				&_enemy->getModel()->getPos(), 7.5))		// enemy-> enemy 배열로
 			{
 				std::cout << "충돌 ! " << std::endl;
 				_enemy->setHP(_enemy->getHP() - _player->getPower());

@@ -1,5 +1,6 @@
 #include "CollisionManager.h"
 #include <cmath>
+#include "Sprite.h"
 
 
 CCollisionManager::CCollisionManager()
@@ -200,4 +201,15 @@ bool CCollisionManager::SphereToLine(const D3DXVECTOR3* SphereCenter, float Sphe
 		hr = true;
 
 	return hr;
+}
+bool CCollisionManager::PointToSprite(D3DXVECTOR2 a_vPt, CSprite* a_sp)
+{
+	if (a_vPt.x <= a_sp->getPosX() + a_sp->getTexture(0)->getImgInfo().Width * a_sp->getAcpX() &&
+		a_vPt.x >= a_sp->getPosX() - a_sp->getTexture(0)->getImgInfo().Width * a_sp->getAcpX() &&
+		a_vPt.y <= a_sp->getPosY() + a_sp->getTexture(0)->getImgInfo().Height * a_sp->getAcpY() &&
+		a_vPt.y >= a_sp->getPosY() - a_sp->getTexture(0)->getImgInfo().Height * a_sp->getAcpY())
+	{
+		return true;
+	}
+	return false;
 }
