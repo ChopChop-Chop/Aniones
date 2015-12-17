@@ -28,7 +28,7 @@ bool S_Intro::Init()
 	_pressAnyKey = new S_PressAnyKey();
 	_pressAnyKey->Init();
 
-	_curState = NONE;
+	_curState = FADEIN;
 
 	_alpha = 0;
 
@@ -49,7 +49,7 @@ void S_Intro::Update()
 		_alpha = 0;
 		break;
 	case IntroState::FADEIN:
-		_alpha += 0.1;
+		_alpha += 0.02;
 
 		if (_alpha >= 1)
 			_curState = APPEAR;
@@ -66,10 +66,10 @@ void S_Intro::Update()
 		}
 		break;
 	case IntroState::FADEOUT:
-		_alpha -= 0.1;
+		_alpha -= 0.02;
 
 		if (_alpha <= 0)
-			_curState = APPEAR;
+			_curState = DISAPPEAR;
 		break;
 	case IntroState::DISAPPEAR:
 		if (_old == 0)
@@ -87,15 +87,7 @@ void S_Intro::Update()
 
 void S_Intro::KeyDown(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	switch (wParam)
-	{
-	case VK_RIGHT:
-		//_mesh->setPos(D3DXVECTOR3(_mesh->getPos().x + 1, _mesh->getPos().y, _mesh->getPos().z));
-		break;
-	case VK_LEFT:
-		//_mesh->setPos(D3DXVECTOR3(_mesh->getPos().x - 1, _mesh->getPos().y, _mesh->getPos().z));
-		break;
-	}
+	
 }
 void S_Intro::KeyUp(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {

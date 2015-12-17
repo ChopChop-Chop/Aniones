@@ -1,5 +1,6 @@
 #include "S_Menu.h"
 #include "Director.h"
+#include "S_CharSelect.h"
 
 
 S_Menu::S_Menu()
@@ -93,7 +94,7 @@ void S_Menu::LButtonUp(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	_exit->setNowAni(0);
 	if (CColMgr->PointToSprite(_cursor->getPos(), _start))
 	{
-		// TODO : ¾À ÀÌµ¿
+		CSceneMgr->setNextScene(new S_CharSelect());
 	}
 	if (CColMgr->PointToSprite(_cursor->getPos(), _credit))
 	{

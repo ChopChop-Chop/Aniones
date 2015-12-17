@@ -23,6 +23,7 @@ bool S_PressAnyKey::Init()
 	_cursor = new CSprite();
 	_cursor->Init("resources/image/ui/cursor_off.png");
 	_cursor->addTexture("resources/image/ui/cursor_on.png");
+	_cursor->setPos(-500, -500);
 	addChild(_cursor, 1);
 
 	//CSoundMgr->playSound(CSoundMgr->getFMOD_SOUND("bg.mp3", true));

@@ -1,6 +1,7 @@
 #include "Director.h"
 #include "S_Intro.h"
 #include "S_PressAnyKey.h"
+#include "S_CharSelect.h"
 
 
 CDirector::CDirector()
@@ -32,8 +33,8 @@ bool CDirector::Init()
 	_sceneMgr = new CSceneManager();
 	_soundMgr = new CSoundManager();
 	_bulletMgr = new CBulletManager();
-
-	_sceneMgr->setCurScene(new S_PressAnyKey());
+	
+	_sceneMgr->setCurScene(new S_CharSelect());
 	_sceneMgr->getCurScene()->Init();
 
 	if (!_soundMgr->Init())
